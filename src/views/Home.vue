@@ -12,7 +12,6 @@ const getItems = async (params) => {
   state.memos = data.resultData;
   console.log(state.memos);
 };
-
 // 첫 화면
 onMounted(() => {
   getItems({});
@@ -24,7 +23,7 @@ onMounted(() => {
     <router-link to="/add" class="add btn btn-light"> + 추가하기 </router-link>
     <router-link
       v-for="m in state.memos"
-      :to="`/memos/${m.id}`"
+      :to="`/memo/${m.id}`"
       class="item"
       :key="m.id"
     >

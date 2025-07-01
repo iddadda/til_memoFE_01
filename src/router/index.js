@@ -10,7 +10,6 @@ const router = createRouter({
     },
     {
       path: "/add",
-      name: "add",
       component: () => import("@/views/Form.vue"),
     },
   ],

@@ -1,5 +1,10 @@
 <script setup>
-import { reactive } from "vue";
+import { reactive, onMounted } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import httpService from "@/services/HttpService";
+
+const route = useRoute();
+const router = useRouter();
 const state = reactive({
   memo: {
     id: 0,
@@ -8,6 +13,19 @@ const state = reactive({
     createdAt: "",
   },
 });
+// pathvariable 에서 id 가져오는 함수
+const findById = async () => {
+  const data = await httpService.findById(route.params.id);
+  state.memo = data.resultData;
+};
+// id가 있으면 메모 조회되도록
+onMounted(() => {
+  if (route.params.id) {
+    findById();
+  }
+});
+
+// const submit = async () => {};
 </script>
 
 <template>
